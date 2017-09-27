@@ -1,7 +1,8 @@
 var fireworks = [];
 var gravity;
 var canvas;
-var startDrawing = true;
+var showGoing = false;
+var startButton;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -9,6 +10,9 @@ function setup() {
   canvas.style('z-index', '-1');
   colorMode(HSB);
 
+  //Get start button
+  startButton = select('.fireworkDisplay');
+  startButton.mousePressed(startShow);
 
 
   //Set gravity
@@ -19,6 +23,14 @@ function setup() {
   firework = new Particle(random(width), height);
 }
 
+function startShow() {
+  if (!showGoing) {
+    showGoing = true;
+  }else{
+    showGoing = false;
+  }
+}
+
 function draw() {
   var fps = frameRate();
   if (fps < 40) console.log(fps);
@@ -26,7 +38,7 @@ function draw() {
   colorMode(RGB);
   background(30,50);
 
-  if(startDrawing) {
+  if(showGoing) {
 
   if(random(0,1) > 0.80){
     fireworks.push(new Firework());
