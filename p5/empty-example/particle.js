@@ -5,6 +5,7 @@ function Particle(x, y, hue, firework) {
   this.lifespan = 255;
   this.hue = hue;
 
+
   if (this.firework) {
     this.vel = createVector(random(0, 0), random(-16, -10));
   } else {

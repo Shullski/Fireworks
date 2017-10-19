@@ -4,6 +4,9 @@ var canvas;
 var showGoing = false;
 var startButton;
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0,0);
@@ -17,9 +20,9 @@ function setup() {
 
   //Set gravity
   gravity = createVector(0, 0.15);
-  stroke(255);
+  stroke(0);
   strokeWeight(4);
-  background(255);
+  background(0);
   firework = new Particle(random(width), height);
 }
 
@@ -36,11 +39,11 @@ function draw() {
   if (fps < 40) console.log(fps);
 
   colorMode(RGB);
-  background(30,50);
+  background(10,90);
 
   if(showGoing) {
 
-  if(random(0,1) > 0.80){
+  if(random(0,1) > 0.95){
     fireworks.push(new Firework());
   }
   for(var i = fireworks.length - 1; i >= 0; i--) {
