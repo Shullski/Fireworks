@@ -50,10 +50,10 @@ function startShow() {
 function toggleShow() {
   if (showGoing) {
     showGoing = false;
-    startButton.html('<h2>Resume</h2>');
+    startButton.html('Resume');
   }else{
     showGoing = true;
-    startButton.html('<h2>Pause</h2>');
+    startButton.html('Pause');
   }
 }
 
