@@ -35,10 +35,16 @@ function Firework() {
   }
 
   this.explode = function() {
+    var rainbow = random(0,1);
     for(var i = 0; i < 100; i++) {
-      var p = new Particle(this.firework.pos.x, this.firework.pos.y, this.hue, false);
+      if (rainbow > 0.3){
+        var p = new Particle(this.firework.pos.x, this.firework.pos.y, this.hue, false);
+      }else{
+        var p = new Particle(this.firework.pos.x, this.firework.pos.y, random(255), false);
+      }
       this.particles.push(p);
     }
+    //sound.play();
   }
 
   this.show = function() {

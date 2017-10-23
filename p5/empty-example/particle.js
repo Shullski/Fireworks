@@ -7,10 +7,10 @@ function Particle(x, y, hue, firework) {
 
 
   if (this.firework) {
-    this.vel = createVector(random(0, 0), random(-16, -10));
+    this.vel = createVector(random(-1, 1), random(-14, -7));
   } else {
     this.vel = p5.Vector.random2D();
-    this.vel.mult(random(2, 10));
+    this.vel.mult(random(2, 10));  //Spread of explosion
   }
 
   this.acc = createVector(0, 0);

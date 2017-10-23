@@ -4,19 +4,25 @@ var canvas;
 var showGoing = false;
 var startButton;
 var count = 0;
+var sound;
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth-1, windowHeight-1);
 }
+
+function preload(){
+  //sound = loadSound('sounds/fire.mp3');
+}
+
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(windowWidth-1,windowHeight-1);
   canvas.position(0,0);
   canvas.style('z-index', '-1');
   colorMode(HSB);
 
   //Get start button
   startButton = select('.fireworkDisplay');
-  startButton.mousePressed(startShow);
+  startButton.mousePressed(toggleShow);
   fireworksLaunched = 0;
 
 
@@ -25,11 +31,10 @@ function setup() {
   stroke(0);
   strokeWeight(4);
   background(10);
-  firework = new Particle(random(width), height);
 }
 
 function showOver() {
-  if(count > 30) {
+  if(count > 20) {
     return true;
   }else {
     return false;
@@ -39,29 +44,29 @@ function showOver() {
 function stopShow() {
   showGoing = false;
 }
-
 function startShow() {
   showGoing = true;
+}
+function toggleShow() {
+  if (showGoing) {
+    showGoing = false;
+    startButton.html('<h2>Resume</h2>');
+  }else{
+    showGoing = true;
+    startButton.html('<h2>Pause</h2>');
+  }
 }
 
 
 function draw() {
   colorMode(RGB);
-  background(10,90);
+  background(25,90);
 
-  if(showGoing) {
-
-  if((random(0,1) > 0.2) && (!showOver())){
+  if((random(0,1) > 0.85) && (showGoing)) {
     fireworks.push(new Firework());
     count += 1;
   }
-
-  if(showOver()) {
-    setTimeout(remove, 3000);
-    //count = 0;
-    //stopShow();
-  }
-
+  //Update current firworks, delete those that have exploded
   for(var i = fireworks.length - 1; i >= 0; i--) {
     fireworks[i].update();
     fireworks[i].show();
@@ -69,5 +74,4 @@ function draw() {
       fireworks.splice(i, 1);
     }
   }
-}
 }
