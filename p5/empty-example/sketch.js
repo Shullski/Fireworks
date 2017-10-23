@@ -5,6 +5,8 @@ var showGoing = false;
 var startButton;
 var count = 0;
 var sound;
+var intensity;
+var intensitySlider;
 
 function windowResized() {
   resizeCanvas(windowWidth-1, windowHeight-1);
@@ -23,14 +25,21 @@ function setup() {
   //Get start button
   startButton = select('.fireworkDisplay');
   startButton.mousePressed(toggleShow);
-  fireworksLaunched = 0;
 
+  //Set intensity slider
+  intensitySlider = select('.slider');
+  intensity = (intensitySlider.value())/10;
+  intensitySlider.changed(updateIntensity);
 
   //Set gravity
   gravity = createVector(0, 0.15);
   stroke(0);
   strokeWeight(4);
   background(10);
+}
+
+function updateIntensity(){
+  intensity = (intensitySlider.value())/10;
 }
 
 function showOver() {
@@ -62,9 +71,10 @@ function draw() {
   colorMode(RGB);
   background(25,90);
 
-  if((random(0,1) > 0.85) && (showGoing)) {
+  if((random(0,1) < intensity) && (showGoing)) {
     fireworks.push(new Firework());
     count += 1;
+
   }
   //Update current firworks, delete those that have exploded
   for(var i = fireworks.length - 1; i >= 0; i--) {

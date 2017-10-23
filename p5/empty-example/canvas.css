@@ -5,7 +5,6 @@
 body{
   background-color: rgb(12,12,12);
   height:100vh;
-  z-index: 0;
 }
 
 .row::after {
@@ -54,12 +53,13 @@ body{
 
 .header {
   color: rgba(255,255,255, 0.95);
-  font-family: sans-serif;
+  font-family: 'Saira', sans-serif;
+  font-
   font-weight:50;
   text-align: center;
 }
 
-.fireworkDisplay {
+#fireworkContainer {
   position:relative;
   display:block;
   border: 3px solid aqua;
@@ -70,21 +70,90 @@ body{
   padding:10px;
   cursor:pointer;
   color:white;
-  font-family: fantasy, sans-serif;
+  font-family: 'Saira', sans-serif;
   letter-spacing:3px;
   font-size: 16px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  z-index: 0;
   user-select: none;
+  z-index: 1;
 }
 
-.fireworkDisplay:hover {
+#fireworkContainer:hover {
   background-color:aqua;
+  display:block;
   color: rgba(0,0,0,0.8);
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   transition: 0.1s;
+  z-index: 2;
 }
-.fireworkDisplay:active{
+#fireworkContainer:active{
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background-color:#80ffff;
+}
+
+.slidecontainer {
+  width:300px;
+  position:relative;
+  margin-left:50%;
+  margin-top: 10px;
+  right:150px;
+}
+
+.slider{
+  width:100%;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  background-color: rgb(100,100,100);
+  outline:none;
+  opacity: 0.8;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: aqua; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: aqua;
+    cursor: pointer; /* Cursor on hover */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.slidecontainer::before {
+  content: 'Boring';
+  position:absolute;
+  color:rgb(215,215,215);
+  left:-60px;
+  top:0;
+  font-family: 'Saira', sans-serif;
+}
+.slidecontainer::after {
+  content: 'Finale';
+  position:absolute;
+  color:rgb(215,215,215);
+  top:0;
+  right: -60px;
+  font-family: 'Saira', sans-serif;
+}
+
+.fireworkDisplay::after {
+  position:absolute;
+  display:block;
+  content:'Videos or a slow machine may affect FPS';
+  bottom: -90px;
+  font-style: italic;
+  color:rgb(215,215,215);
+  font-size:12px;
+
+}
+.fireworkDisplay:hover::after {
+  color:rgb(215,215,215);
+  font-style: italic;
 }
